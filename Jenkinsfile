@@ -1,15 +1,11 @@
 pipeline {
-   
-    options {
-        timeout(time: 60, unit: 'SECONDS')
-    }
-    agent any   
-    stages {
-        
-        stage('sleep') {
-            steps {
-                sleep 5
-            }
-        }
-    }
+	agent any
+	stages {
+		
+		stage('Build') {
+			steps {
+				sh './mvnw package'
+			}
+		}
+	}
 }
