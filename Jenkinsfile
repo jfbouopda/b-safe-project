@@ -2,9 +2,14 @@ pipeline {
 	agent any
 	stages {
 		
-		stage('Build') {
+		stage('compile') {
 			steps {
-				sh './mvnw package'
+				sh 'mvn compile'
+			}
+		}
+		stage('Unit test') {
+			steps {
+				sh 'mvn test'
 			}
 		}
 	}
