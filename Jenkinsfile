@@ -2,14 +2,9 @@ pipeline {
 	agent any
 	stages {
 		
-		stage('compile') {
+		stage('Build') {
 			steps {
-				sh 'mvn compile'
-			}
-		}
-		stage('Unit test') {
-			steps {
-				sh 'mvn test'
+				sh './mvnw package && java -jar target/gs-spring-boot-docker-0.1.0.jar'
 			}
 		}
 		stage('Docker Build') {
