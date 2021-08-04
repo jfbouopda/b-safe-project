@@ -11,6 +11,7 @@ pipeline {
       			agent any
       			steps {
         			sh 'docker build -t jordan14/b-safe:latest .'
+				sh 'docker run -p 8080:8080 jordan14/b-safe:latest'
     			  }
     		}
 	}
