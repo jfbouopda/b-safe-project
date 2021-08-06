@@ -7,7 +7,7 @@ pipeline {
 				sh './mvnw package'
 			}
 		}
-		stage('Docker image build') {
+		stage('Docker and run image build') {
       			agent any
       			steps {
         			sh 'docker build -t jordan14/b-safe:latest .'
