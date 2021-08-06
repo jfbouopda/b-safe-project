@@ -1,5 +1,6 @@
 FROM openjdk:8-jdk-alpine
+ARG JAR_FILE
 VOLUME /tmp
-ARG JAR_FILE=target/*.jar
+COPY run.sh .
 COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java","${JAVA_OPTS}","-jar","/app.jar"]
+ENTRYPOINT ["run.sh"]
