@@ -13,5 +13,12 @@ pipeline {
         			sh 'docker build -t jordan14/b-safe:latest .'
     			  }
     		}
+		stage('Deploy Image') {
+			steps{
+				script {
+					docker.withRegistry( '', docker_hub ) {
+					dockerImage.push()
+					}
+				}
 	}
 }
