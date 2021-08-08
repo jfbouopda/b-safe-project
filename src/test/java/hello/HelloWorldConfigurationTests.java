@@ -49,8 +49,8 @@ public class HelloWorldConfigurationTests {
 	
 	@Test
     	public void getHello() throws Exception {
-        	ResponseEntity<String> response = template.getForEntity("/", String.class);
-        	assertThat(response.getBody()).isEqualTo("Hello Docker World by Joseph Francois Bouopda - Simplilearn 2021");
+        	ResponseEntity<String>  entity = restTemplate.getForEntity("http://localhost:" + this.port + "/", String.class);
+        	assertThat(entity.getBody()).isEqualTo("Hello Docker World by Joseph Francois Bouopda - Simplilearn 2021");
     }
 
 }
