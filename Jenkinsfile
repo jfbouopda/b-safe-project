@@ -4,28 +4,38 @@ pipeline {
 		registryCredential = 'docker_hub'
 		dockerImage = ''
 	}
-	agent any
-	stages {
-		
-		stage('Build') {
-			steps {
-				sh './mvnw package'
-			}
-		}
-		stage('Docker image build and run') {
-      			agent any
-      			steps {
-        			sh 'docker build -t jordan14/b-safe:latest .'
-    			  }
-    		}
-        stage('Push Docker image') {
-            environment {
-                DOCKER_HUB_LOGIN = credentials('docker-hub')
-            }
-            steps {
-                sh 'docker login --username=$DOCKER_HUB_LOGIN_USR --password=$DOCKER_HUB_LOGIN_PSW'
-                sh './mvnw dockerPush'
-            }
+  agent any
+  stages {
+    stage('Cloning Git') {
+      steps {
+        git 'https://github.com/jfbouopda/b-safe-project.git'
+      }
+    }
+    stage('Build') {
+      steps {
+	sh './mvnw package'
+      }
+    }
+    stage('Building and run image') {
+      steps{
+        script {
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
-	}
+      }
+    }
+    stage('Deploy Image') {
+      steps{
+        script {
+          docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+          }
+        }
+      }
+    }
+    stage('Remove Unused docker image') {
+      steps{
+        sh "docker rmi $registry:$BUILD_NUMBER"
+      }
+    }
+  }
 }
