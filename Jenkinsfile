@@ -18,16 +18,14 @@ pipeline {
         			sh 'docker build -t jordan14/b-safe:latest .'
     			  }
     		}
-		stage('Deploy Image') {
-			steps{
-    docker.withRegistry('https://registry.example.com', 'docker_hub') {
-
-        def customImage = docker.build("my-image:${env.BUILD_ID}")
-
-        /* Push the container to the custom Registry */
-        customImage.push()
-				}
-			}
-		}
+        stage('Push Docker image') {
+            environment {
+                DOCKER_HUB_LOGIN = credentials('docker-hub')
+            }
+            steps {
+                sh 'docker login --username=$DOCKER_HUB_LOGIN_USR --password=$DOCKER_HUB_LOGIN_PSW'
+                sh './mvnw dockerPush'
+            }
+        }
 	}
 }
