@@ -6,11 +6,6 @@ pipeline {
 	}
   agent any
   stages {
-    stage('Cloning Git') {
-      steps {
-        git 'https://github.com/jfbouopda/b-safe-project.git'
-      }
-    }
     stage('Build') {
       steps {
 	sh './mvnw package'
