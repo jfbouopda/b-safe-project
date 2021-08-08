@@ -1,7 +1,7 @@
 pipeline {
 	environment {
 		registry = "jordao14/b-safe"
-		registryCredential = ‘docker-hub’
+		registryCredential = 'docker-hub'
 		dockerImage = ''
 	}
   agent any
