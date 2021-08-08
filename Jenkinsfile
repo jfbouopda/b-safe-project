@@ -6,11 +6,10 @@ pipeline {
 	sh './mvnw package'
       }
     }
-    stage('Building and run docker image') {
-      steps{
-        script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
-        }
+    stage('Docker image build and run') {
+      agent any
+      steps {
+        sh 'docker build -t jordan14/b-safe:latest .'
       }
     }
   }
