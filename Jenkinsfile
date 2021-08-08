@@ -1,6 +1,6 @@
 pipeline {
 	environment {
-		registry = "jordao14/docker_jenkins_pipeline"
+		registry = "jordao14/b-safe"
 		registryCredential = 'docker-hub'
 		dockerImage = ''
 	}
