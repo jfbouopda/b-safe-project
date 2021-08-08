@@ -46,5 +46,11 @@ public class HelloWorldConfigurationTests {
 				.getForEntity("http://localhost:" + this.port + "/", String.class);
 		assertEquals(HttpStatus.OK, entity.getStatusCode());
 	}
+	
+	@Test
+    	public void getHello() throws Exception {
+        	ResponseEntity<String> response = template.getForEntity("/", String.class);
+        	assertThat(response.getBody()).isEqualTo("Hello Docker World by Joseph Francois Bouopda - Simplilearn 2021");
+    }
 
 }
