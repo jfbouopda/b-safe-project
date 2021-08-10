@@ -27,10 +27,11 @@ pipeline {
         }
       }
     }
-    stage('Remove Unused docker image') {
-      steps{
-        sh "docker rmi $registry:$BUILD_NUMBER"
-        sh "docker stack rm $registry:$BUILD_NUMBER"
+    stage ('Deploy the application') {
+      steps {
+        input "Ready to deploy?"
+        sh "docker stack deploy b-safe --compose-file docker-compose.yml"
+        sh "docker service update b-safe_server --image jordao14/b-safe:v${env.BUILD_ID}"
       }
     }
   }
