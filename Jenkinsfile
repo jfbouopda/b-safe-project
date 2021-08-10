@@ -31,7 +31,7 @@ pipeline {
       steps {
         input "Ready to deploy?"
         sh "docker stack deploy b-safe --compose-file docker-compose.yml"
-        sh "docker service update b-safe_server --image jordao14/b-safe:v${env.BUILD_ID}"
+        sh "docker service update b-safe_server --image $registry:$BUILD_NUMBER"
       }
     }
   }
