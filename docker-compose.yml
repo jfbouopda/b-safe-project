@@ -1,9 +1,8 @@
-version: "3.9"
+version: '3.9'
 services:
-  image: "openjdk:8-jdk-alpine"
-  web:
-    build: .
-    ports:
-      - "8080:8080"
-  redis:
-    image: "redis:alpine"
+ redis-server:
+   image: redis
+ node-app:
+   build: .
+ ports:
+   - "8080:8080"
