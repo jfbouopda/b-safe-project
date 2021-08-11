@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   web:
-    image: https://index.docker.io/v1:8080/b-safe
+    image: 127.0.0.53:8080/b-safe
     build: .
     ports:
       - "8080:8080"
