@@ -32,5 +32,15 @@ pipeline {
         sh "docker stack deploy b-safe --compose-file docker-compose.yml"
       }
     }
+    stage ('Remove the container stack') {
+      steps {
+        sh "docker stack rm b-safe"
+      }
+    }
+    stage('Remove Unused docker image') {
+      steps{
+        sh "docker rmi $registry:$BUILD_NUMBER"
+      }
+    }
   }
 }
