@@ -1,6 +1,6 @@
 version: "3.9"
 services:
-  web:
+  b-safe:
     image: 127.0.0.1:5000/b-safe
     build: .
     ports:
