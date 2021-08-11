@@ -29,7 +29,6 @@ pipeline {
     }
     stage ('Deploy the application') {
       steps {
-        sh "docker stack rm b-safe"
         sh "docker stack deploy b-safe --compose-file docker-compose.yml"
       }
     }
