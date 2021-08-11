@@ -31,7 +31,6 @@ pipeline {
       steps {
         sh "docker stack rm b-safe"
         sh "docker stack deploy b-safe --compose-file docker-compose.yml"
-        sh "docker service update b-safe --image $registry:$BUILD_NUMBER"
       }
     }
   }
