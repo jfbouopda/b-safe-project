@@ -4,6 +4,6 @@ services:
     image: 139.59.168.80:5000/b-safe
     build: .
     ports:
-      - "5080:8080"
+      - "5000:8080"
   redis:
     image: redis:alpine
