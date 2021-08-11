@@ -1,7 +1,6 @@
 version: "3.9"
 services:
   web:
-    image: 139.59.168.80:8080/b-safe
     build:
       dockerfile: Dockerfile
       context: .
